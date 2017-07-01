@@ -1,0 +1,26 @@
+{
+  "firstName": "user",
+  "lastName": "admin",
+  "displayName": "Admin User",
+  "email": "damarlaravi@gmail.com",
+  "username": "admin",
+  "password": "admin@321",
+  "address": null,
+  "roles": "ADMIN",
+  "stores": [
+    {
+      "_id": "store001",
+      "storeLocation": [
+        {
+          "contactName": "Ravi Kumar",
+          "address1": "Survey No- 1, Plot No. 6",
+          "address2": "Ramanthapur Road, Uppal",
+          "pinCode": 500039,
+          "city": "Hyderabad",
+          "country": "India",
+          "telephone": 7799557456
+        }
+      ]
+    }
+  ]
+}

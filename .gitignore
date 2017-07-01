@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+npm-debug.log
+
+public/assets
+node_modules
+stats.json
+lib
+billingApp.iml
