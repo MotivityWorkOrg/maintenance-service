@@ -59,7 +59,7 @@ module.exports = {
             to: req.body.email,
             subject: 'New VSFood password.', // Subject line
             html: '<b>Your new password is ' + newPass + '.  </b><br/><br/><br/>' +
-            '<a href="http://localhost:3000/reset-password">Reset here.</a>' // html body
+            '<a href="http://localhost:8080/reset-password">Reset here.</a>' // html body
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -73,6 +73,7 @@ module.exports = {
     },
 
     resetPassword: function (req, res) {
+        //console.log(" Request is :: ", req.body);
         let email;
         reset.findOne({password: req.body.oldPassword}, (err, pass) => {
             if (err) {
@@ -80,6 +81,7 @@ module.exports = {
             }
             if (pass) {
                 email = pass.email;
+                //console.log(" Email is :: ", email);
                 let today = new Date();
                 let diff = dateDiffInDays(today, pass.create);
                 if (diff < 1) {

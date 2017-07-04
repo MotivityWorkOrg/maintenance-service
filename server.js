@@ -19,6 +19,7 @@ let StaticInfo = require('./backend/controllers/StaticInfo');
 let Expense = require('./backend/controllers/expense');
 let Income = require('./backend/controllers/income');
 let Expenditure = require('./backend/controllers/expenditure');
+let ForgotPassword = require('./backend/controllers/forgot-password');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -88,6 +89,9 @@ app.post('/api/income', Income.createIncome);
 
 app.get('/api/expenditures', Expenditure.getExpenditureInfo);
 
+app.post('/api/forgot-password', ForgotPassword.changePassword);
+app.post('/api/reset-password', ForgotPassword.resetPassword);
+
 // uncomment when authentication done and use sensitive data
 //app.use('/private', express.static(path.join(__dirname, 'private')));
 
@@ -141,7 +145,7 @@ if (app.get('env') === 'development') {
             message: err.message,
             error: err
         });
-        console.log("NEXT is ::: ",next);
+        console.log("NEXT is ::: ", next);
         next();
     });
 }

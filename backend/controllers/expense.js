@@ -24,18 +24,9 @@ function getUserInfo(req) {
 module.exports = {
     createExpenses: function (req, res) {
         let expenseObj = req.body;
-        //console.log(req.headers, ' Request Body is ::: ',req.body);
-        let token = req.headers['authorization'].replace(/^JWT\s/, '');
-        let decoded;
-        //console.log("Token is  ::  ", token);
-        try {
-            decoded = jsonWebToken.verify(token, 'superSecret');
-            //console.log(decoded);
-        }
-        catch (err) {
-            console.log("Token Error Is:::   ", err);
-        }
-        expenseObj.createdBy = decoded.username;
+        let userInfo = getUserInfo(req);
+        console.log(' userInfo ::: ', userInfo);
+        expenseObj.createdBy = userInfo.username;
         let expenseModel = new Expense(expenseObj);
         expenseModel.save(expenseObj, (err, data) => {
             if (err) {

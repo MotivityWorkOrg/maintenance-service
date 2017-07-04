@@ -14,7 +14,6 @@ function getTotal(res, expenses, income) {
     response.totalExpenses = 0;
     response.byHand = 0;
     response.totalIncome = 0;
-    //console.log('expenses  ', timeSpan);
     if (expenses) {
         response.expenses = expenses;
         response.totalExpenses = expenses.reduce((total, data) => {
@@ -37,10 +36,7 @@ function getTotal(res, expenses, income) {
 }
 
 function totalDiff(totalExpenses, totalIncomes) {
-    if (totalExpenses && totalIncomes) {
-        return totalIncomes - totalExpenses;
-    }
-    return 0;
+    return totalIncomes - totalExpenses;
 }
 
 module.exports = {

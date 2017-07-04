@@ -33,7 +33,7 @@ module.exports = {
 		let errors = req.validationErrors();
 		let user = req.body;
 		user.displayName = req.body.firstName + ' ' + req.body.lastName;
-		console.log(req.body.year, req.body.month, req.body.day);
+		//console.log(req.body.year, req.body.month, req.body.day);
 		let month = parseInt(req.body.month);
 		let day = parseInt(req.body.day) + 1;
 		user.dob = new Date(parseInt(req.body.year), month, day);
