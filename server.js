@@ -20,6 +20,7 @@ let Expense = require('./backend/controllers/expense');
 let Income = require('./backend/controllers/income');
 let Expenditure = require('./backend/controllers/expenditure');
 let ForgotPassword = require('./backend/controllers/forgot-password');
+let Flat = require('./backend/controllers/flats');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -91,6 +92,11 @@ app.get('/api/expenditures', Expenditure.getExpenditureInfo);
 
 app.post('/api/forgot-password', ForgotPassword.changePassword);
 app.post('/api/reset-password', ForgotPassword.resetPassword);
+
+// Flat info
+app.post('/api/add-flat', Flat.postFlatInfo);
+app.get('/api/add-flat', Flat.getFlatsInfo);
+app.put('/api/add-flat', Flat.updateFlatsInfo);
 
 // uncomment when authentication done and use sensitive data
 //app.use('/private', express.static(path.join(__dirname, 'private')));

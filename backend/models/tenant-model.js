@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let flatSchema = new Schema({
+let tenantSchema = new Schema({
     _id: {
         type: Number,
         required: true
@@ -13,10 +13,6 @@ let flatSchema = new Schema({
         type: String,
         required: true
     },
-    tenant: {
-        type: Number,
-        ref: "Tenant"
-    },
     phoneNumber: {
         type: Number,
         required: true
@@ -27,10 +23,6 @@ let flatSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
-    },
-    isOccupied: {
-        type: Boolean,
         required: true
     },
     createdBy: {
@@ -50,4 +42,4 @@ let flatSchema = new Schema({
 }, {
     versionKey: false
 });
-module.exports = mongoose.model('Flat', flatSchema);
+module.exports = mongoose.model('Tenant', tenantSchema);
