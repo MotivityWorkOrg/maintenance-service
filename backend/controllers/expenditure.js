@@ -11,14 +11,13 @@ let timeSpan;
 
 function getTotal(res, expenses, income) {
     response.periodInfo = timeSpan;
-    response.totalExpenses = 0;
     response.byHand = 0;
-    response.totalIncome = 0;
     if (expenses) {
         response.expenses = expenses;
         response.totalExpenses = expenses.reduce((total, data) => {
             return total + parseFloat(data.amount);
         }, 0);
+        //console.log('  response.totalExpenses   ', response.totalExpenses);
         response.byHand = totalDiff(response.totalExpenses, response.totalIncome)
     }
 
@@ -27,10 +26,12 @@ function getTotal(res, expenses, income) {
         response.totalIncome = income.reduce((total, data) => {
             return total + parseFloat(data.amount);
         }, 0);
+        //console.log('  response.totalExpenses In income  ', response.totalExpenses);
         response.byHand = totalDiff(response.totalExpenses, response.totalIncome)
     }
 
     if (response.expenses && response.income) {
+        //console.log(' RES is ', response);
         res.json({status: 200, data: response});
     }
 }
