@@ -3,8 +3,8 @@
 Clone the repo:
 
 ```bash
-$ git clone https://github.com/yantrixs/event-management-be.git
-$ cd event-management-be
+$ https://github.com/MotivityWorkOrg/maintenance-service.git
+$ cd maintenance-service
 ```
 
 Install dependencies:
