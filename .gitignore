@@ -6,4 +6,4 @@ public/assets
 node_modules
 stats.json
 lib
-billingApp.iml
+maintenance-service.iml
