@@ -25,6 +25,7 @@
     "http-proxy": "^1.16.2",
     "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.7",
+    "moesif-express": "^2.3.14",
     "moment": "^2.17.1",
     "mongoose": "^4.7.2",
     "morgan": "^1.7.0",

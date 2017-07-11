@@ -10,6 +10,7 @@ let httpProxy = require('http-proxy');
 let proxy = httpProxy.createProxyServer();
 let methodOverride = require('method-override');
 let expressValidator = require('express-validator');
+//let moesifExpress = require('moesif-express');
 let cors = require('cors');
 //let crossSharing = require('./backend/services/cors');
 let app = express();
@@ -21,6 +22,7 @@ let Income = require('./backend/controllers/income');
 let Expenditure = require('./backend/controllers/expenditure');
 let ForgotPassword = require('./backend/controllers/forgot-password');
 let Flat = require('./backend/controllers/flats');
+let moesifExpress = require('./backend/moesif/index');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -71,6 +73,13 @@ app.use(function (err, req, res, next) {
     console.log(next);
     next();
 });
+
+//let TEST_API_SECRET_KEY = 'eyJhcHAiOiI1MTk6MTgiLCJ2ZXIiOiIyLjAiLCJvcmciOiIyMDc6NSIsImlhdCI6MTQ5OTczMTIwMH0.Tz0cqalny9Uln68y9EItVVRHLJJ3LrvnGHbiH_4e4qw';
+
+//let moesifMiddleWare = moesifExpress({applicationId: TEST_API_SECRET_KEY});
+
+//app.use(moesifMiddleWare);
+
 //Handle Requests
 app.post('/auth/signup', auth.register);
 app.post('/auth/login', auth.login);
@@ -155,6 +164,29 @@ if (app.get('env') === 'development') {
         next();
     });
 }
+
+/*// Set the options, the only required field is applicationId.
+let options = {
+    applicationId: 'eyJhcHAiOiI1MTk6MTgiLCJ2ZXIiOiIyLjAiLCJvcmciOiIyMDc6NSIsImlhdCI6MTQ5OTczMTIwMH0.Tz0cqalny9Uln68y9EItVVRHLJJ3LrvnGHbiH_4e4qw',
+    identifyUser: function (req, res) {
+        if (req.user) {
+            return req.user.id;
+        }
+        console.log(' MOESIF :: ', res);
+        return undefined;
+    },
+
+    getSessionToken: function (req, res) {
+        console.log(' MOESIF [getSessionToken]::   ', req);
+        return req.headers['Authorization'];
+    }
+};
+
+// Set the options, the only required field is applicationId.
+let moesif = moesifExpress(options);
+
+// Load the Moesif middleware
+app.use(moesif);*/
 
 // production error handler
 // no stack traces leaked to user
