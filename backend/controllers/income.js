@@ -24,7 +24,7 @@ module.exports = {
         let incomeObj = req.body;
         let userInfo = getUserInfo(req);
         incomeObj.createdBy = userInfo.username;
-        console.log(incomeObj);
+        //console.log(incomeObj);
         let incomeModel = new Income(incomeObj);
         incomeModel.save(incomeObj, (err, data) => {
             if (err) {
@@ -41,7 +41,7 @@ module.exports = {
         let userInfo = getUserInfo(req);
         incomeObj.updatedBy = userInfo.username;
         incomeObj.updatedDate = new Date();
-        console.log(incomeObj);
+        //console.log(incomeObj);
         Income.findOneAndUpdate(
             {_id: req.query._id},
             incomeObj,

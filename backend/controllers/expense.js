@@ -25,7 +25,7 @@ module.exports = {
     createExpenses: function (req, res) {
         let expenseObj = req.body;
         let userInfo = getUserInfo(req);
-        console.log(' userInfo ::: ', userInfo);
+        //console.log(' userInfo ::: ', userInfo);
         expenseObj.createdBy = userInfo.username;
         let expenseModel = new Expense(expenseObj);
         expenseModel.save(expenseObj, (err, data) => {
@@ -43,7 +43,7 @@ module.exports = {
         let userInfo = getUserInfo(req);
         expenseObj.updatedBy = userInfo.username;
         expenseObj.updatedDate = new Date();
-        console.log(expenseObj);
+        //console.log(expenseObj);
         Expense.findOneAndUpdate(req.query, expenseObj, (err, expense) => {
                 if (err)
                     res.send(err);

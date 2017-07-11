@@ -12,17 +12,17 @@ let methodOverride = require('method-override');
 let expressValidator = require('express-validator');
 //let moesifExpress = require('moesif-express');
 let cors = require('cors');
+let MoesifExpress = require('./backend/moesif/index');
 //let crossSharing = require('./backend/services/cors');
 let app = express();
 let auth = require('./backend/controllers/auth');
-let StaticInfo = require('./backend/controllers/StaticInfo');
 
+let StaticInfo = require('./backend/controllers/StaticInfo');
 let Expense = require('./backend/controllers/expense');
 let Income = require('./backend/controllers/income');
 let Expenditure = require('./backend/controllers/expenditure');
 let ForgotPassword = require('./backend/controllers/forgot-password');
 let Flat = require('./backend/controllers/flats');
-let moesifExpress = require('./backend/moesif/index');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -74,11 +74,9 @@ app.use(function (err, req, res, next) {
     next();
 });
 
-//let TEST_API_SECRET_KEY = 'eyJhcHAiOiI1MTk6MTgiLCJ2ZXIiOiIyLjAiLCJvcmciOiIyMDc6NSIsImlhdCI6MTQ5OTczMTIwMH0.Tz0cqalny9Uln68y9EItVVRHLJJ3LrvnGHbiH_4e4qw';
-
-//let moesifMiddleWare = moesifExpress({applicationId: TEST_API_SECRET_KEY});
-
-//app.use(moesifMiddleWare);
+let TEST_API_SECRET_KEY = 'eyJhcHAiOiI1MTk6MTgiLCJ2ZXIiOiIyLjAiLCJvcmciOiIyMDc6NSIsImlhdCI6MTQ5OTczMTIwMH0.Tz0cqalny9Uln68y9EItVVRHLJJ3LrvnGHbiH_4e4qw';
+let moesifMiddleWare = MoesifExpress({applicationId: TEST_API_SECRET_KEY});
+app.use(moesifMiddleWare);
 
 //Handle Requests
 app.post('/auth/signup', auth.register);
