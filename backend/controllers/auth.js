@@ -29,7 +29,7 @@ module.exports = {
 	},
 	register: function (req, res) {
 		//req.check('username').isAlphanumeric(); // check to see if not empty
-		console.log(req.body, '  ::::');
+		//console.log('Request is :::   ', req.body);
 		let errors = req.validationErrors();
 		let user = req.body;
 		user.displayName = req.body.firstName + ' ' + req.body.lastName;
@@ -38,15 +38,15 @@ module.exports = {
 		let day = parseInt(req.body.day) + 1;
 		user.dob = new Date(parseInt(req.body.year), month, day);
 		if (errors) {
-			res.status(500).send(errors);
+            res.json({status: 200, subStatus: 5 , message: errors});
 		} else {
 			User.Create(user, function (err, user) {
 				if (err) {
-					res.status(500).send(err.message);
+					res.json({status: 200, subStatus: 5 , message: err.message});
 					console.log("err.message :::  ", err.message);
 				} else {
-					res.sendStatus(200);
-					console.log("Register User is :::  ", user);
+                    res.json({status: 200, subStatus: 1 , message: "SUCCESS"});
+					//console.log("Register User is :::  ", user);
 				}
 			});
 		}
