@@ -5,5 +5,5 @@ npm-debug.log
 public/assets
 node_modules
 stats.json
-lib
+images/
 maintenance-service.iml

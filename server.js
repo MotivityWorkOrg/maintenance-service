@@ -35,8 +35,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '/backend')));
 
-let publicPath = path.resolve(__dirname, '..', 'public');
+let publicPath = path.resolve(__dirname, '..', 'backend');
 app.use(expressValidator());
 
 // Bring Mongoose into the app
@@ -81,6 +82,7 @@ app.use(moesifMiddleWare);
 //Handle Requests
 app.post('/auth/signup', auth.register);
 app.post('/auth/login', auth.login);
+app.post('/user/upload-image', auth.updateUser);
 
 //get Static Info
 app.get('/types/expenses', StaticInfo.getExpenseTypes);
@@ -162,29 +164,6 @@ if (app.get('env') === 'development') {
         next();
     });
 }
-
-/*// Set the options, the only required field is applicationId.
-let options = {
-    applicationId: 'eyJhcHAiOiI1MTk6MTgiLCJ2ZXIiOiIyLjAiLCJvcmciOiIyMDc6NSIsImlhdCI6MTQ5OTczMTIwMH0.Tz0cqalny9Uln68y9EItVVRHLJJ3LrvnGHbiH_4e4qw',
-    identifyUser: function (req, res) {
-        if (req.user) {
-            return req.user.id;
-        }
-        console.log(' MOESIF :: ', res);
-        return undefined;
-    },
-
-    getSessionToken: function (req, res) {
-        console.log(' MOESIF [getSessionToken]::   ', req);
-        return req.headers['Authorization'];
-    }
-};
-
-// Set the options, the only required field is applicationId.
-let moesif = moesifExpress(options);
-
-// Load the Moesif middleware
-app.use(moesif);*/
 
 // production error handler
 // no stack traces leaked to user
