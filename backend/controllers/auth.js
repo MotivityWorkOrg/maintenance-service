@@ -3,6 +3,7 @@ let User = require('../models/user');
 let console = require('console');
 let multer = require('multer');
 let jsonWebToken = require('jsonwebtoken');
+let fs = require('fs');
 //let UploadImage = require('../upload/upload-images');
 
 let storage = multer.diskStorage({ //multers disk storage settings
@@ -87,7 +88,22 @@ module.exports = {
         let path = '';
         //console.log(path, '  ::   ', req.headers);
         let userInfo = getUserInfo(req);
-        //console.log(userInfo);
+        //console.log(__dirname.replace('controllers', ''));
+        let mainDir = __dirname.replace('controllers', '') + 'images';
+        let subDir = mainDir + '/profile';
+        //console.log('Main Dir is :: ', mainDir, ' Sub Dir ::  ', subDir);
+
+        if (!fs.existsSync(mainDir)) {
+            fs.mkdirSync(mainDir);
+            if (!fs.existsSync(subDir)) {
+                fs.mkdirSync(subDir);
+            }
+        } else {
+            if (!fs.existsSync(subDir)) {
+                fs.mkdirSync(subDir);
+            }
+        }
+
         upload(req, res, function (err) {
             //console.log(req.file);
             if (err) {
