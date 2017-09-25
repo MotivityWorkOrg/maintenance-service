@@ -43,7 +43,7 @@ app.use(expressValidator());
 // Bring Mongoose into the app
 let mongoose = require('mongoose');
 // Build the connection string
-let dbURI = 'mongodb://localhost:27017/maintenance';
+let dbURI = mongodb://damarlaravi:S@ndhita533@ds025180.mlab.com:25180/building; //'mongodb://localhost:27017/maintenance';
 mongoose.Promise = require('bluebird');
 // Create the database connection
 mongoose.connect(dbURI);

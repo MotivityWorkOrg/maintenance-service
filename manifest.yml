@@ -1,0 +1,6 @@
+---
+applications:
+- name: maintanance-be
+  buildpack: staticfile_buildpack
+  memory: 768M
+  random-route: false
